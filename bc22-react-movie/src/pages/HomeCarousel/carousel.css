@@ -1,0 +1,8 @@
+
+.ant-carousel .slick-dots-bottom {
+    bottom: 16px !important;
+}
+.ant-carousel .slick-dots{
+    margin: 0 !important;
+    padding: 0 !important;
+}

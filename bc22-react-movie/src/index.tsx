@@ -5,7 +5,11 @@ import store from 'store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-
+// ant design
+import 'antd/dist/antd.css';
+// react slick
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 // setup redux store
 import { Provider } from 'react-redux';
 
@@ -19,7 +23,6 @@ root.render(
     <BrowserRouter>
     <App />
     </BrowserRouter>
-   
   </Provider>
 );
 

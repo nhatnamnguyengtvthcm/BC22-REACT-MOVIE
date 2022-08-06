@@ -1,45 +1,38 @@
 import React from "react";
 import "App.css";
 import Home from "pages/Home";
-import { MainTemplate } from "template/MainTemplate";
-import { GlobalStyle } from "GlobalStyle";
 import { Route, Routes } from "react-router-dom";
-import Movie from "pages/Movie";
+// import {createBrowserHistory} from "history";
+import { Router,  } from "react-router";
+import { MainTemplate } from "templates/MainTemplate";
+import News from "pages/News/News";
+import Contact from "pages/Contact";
+import Regisgter from "pages/Register/Regisgter";
 import Login from "pages/Login";
-import DemoGrid from "components/TailWinComponent/DemoGrid";
-import PaddingMarginDemo from "components/TailWinComponent/PaddingMarginDemo";
-import WidthHeightDemo from "components/TailWinComponent/WidthHeightDemo";
-import FlexDemo from "components/TailWinComponent/FlexDemo";
-import JoinDemo from "components/Lodash/JoinDemo";
-import LastFirstLodash from "components/Lodash/LastFirstLodash";
-import ChunkLodash from "components/Lodash/ChunkLodash";
-import FillLodash from "components/Lodash/FillLodash";
-import SortLodash from "components/Lodash/SortLodash";
-import UniqLodash from "components/Lodash/UniqLodash";
-import FlattenLodash from "components/Lodash/FlattenLodash";
+import Detail from "pages/Detail";
+
+
 function App() {
   return (
     <>
-      <Routes>
+      <Routes >
+        {/* <Route path="" element={<Login />}> </Route> */}
         <Route path="/" element={<MainTemplate />}>
-          <Route path="/movies/:movieId" element={<Movie />} />
-          <Route index element={<Home />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/register" element={<Regisgter />} />
+          <Route path="/login" element={<Login />} />
+          <Route path= "/test" element={<Detail />} />
+          
+          <Route index element={<Login />} />
+         
+          <Route path="*" element={<h1>Not Found</h1>}/>
         </Route>
-        <Route path="/login" element={<Login />} />
-        <Route path="/demogrid" element={<DemoGrid />} />
-        <Route path="/demomargin" element={<PaddingMarginDemo />} />
-        <Route path="/withheight" element={<WidthHeightDemo />} />
-        <Route path="/flex" element={<FlexDemo />} />
-        <Route path="/join" element={<JoinDemo />} />
-        <Route path="/firstlast" element={<LastFirstLodash />} />
-        <Route path="/chunkLodash" element={<ChunkLodash />} />
-        <Route path="/fillLodash" element={<FillLodash />} />
-        <Route path="/sortLodash" element={<SortLodash />} />
-        <Route path="/uniqLodash" element={<UniqLodash />} />
-        <Route path="/flaternLodash" element={<FlattenLodash />} />
+        <Route path= "/detail/:maPhim" element={<Detail />} />
       </Routes>
-      <GlobalStyle />
     </>
+
+    
   );
 }
 
