@@ -9,11 +9,17 @@ interface State{
     data: Movie[];
     isLoading: boolean;
     error: string;
+    movies: Movie[],
+    isShowingMovie: boolean,
+    isComingMovie: boolean
 }
 const initialState: State = {
     data: [],
     isLoading: false,
     error: "",
+    movies: [],
+    isShowingMovie: false,
+    isComingMovie: false
 }
 
 // sử dụng: dispatch(getMovieList(params))
@@ -47,22 +53,35 @@ export const getMovieList = createAsyncThunk(
 const moviesSlice = createSlice({
     name: "movie",// namespace để tạo ra các action type
     initialState,
-    reducers:{},
+    reducers:{
+        showingMovie:(state,action)=>{
+            const movieShowing = state.data.filter((item)=>item.dangChieu && !item.sapChieu); 
+
+            return {...state, movies:movieShowing,isShowingMovie:true, isComingMovie:false };
+        },
+        comingMovie:  (state,action)=>{
+            const movieComing = state.data.filter((item)=>item.sapChieu && !item.dangChieu);
+            return {...state, movies:movieComing, isShowingMovie:false, isComingMovie:true };
+        }
+    },
     extraReducers: (builder)=>{
         builder.addCase(getMovieList.pending, (state)=>{
             // request đang thực thi => set isLoading thành true để show loading ra giao diện
+            // console.log("pending");
             return {...state, isLoading:true};
         })
         builder.addCase(getMovieList.fulfilled, (state, {payload})=>{
             // payload là data được return từ hàm getMovieList
-            return {...state, isLoading:false, data:payload};
+            return {...state, isLoading:false, data:payload, movies:payload};
         })
         builder.addCase(getMovieList.rejected, (state,{error})=>{
+            // console.log("reject");
+
             // error được throw từ hàm getMovieList
             return {...state, isLoading:false, error: error.message as string};
         })
     },
 
 });
-
+export const {showingMovie, comingMovie} = moviesSlice.actions;
 export default moviesSlice.reducer;

@@ -12,3 +12,10 @@ export interface Movie {
     dangChieu:     boolean;
     sapChieu:      boolean;
 }
+
+export interface Banner {
+    maBanner: number;
+    tenPhim: number;
+    hinhAnh: string;
+   
+}

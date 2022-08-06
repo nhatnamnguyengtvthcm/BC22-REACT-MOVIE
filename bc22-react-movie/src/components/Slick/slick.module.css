@@ -1,0 +1,23 @@
+.slick-prev, .slick-next{
+    top:25%
+}
+.slick-prev:before, .slick-next:before {
+    
+    font-family: 'slick';
+    font-size: 40px !important;
+    line-height: 1;
+    opacity: .75;
+    color: gray !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin-top: 0;
+    /* top:25%; */
+}
+
+.activeMovie {
+    @apply bg-red-800 text-white;
+}
+
+.deactiveMovie {
+    @apply bg-white text-red-800;
+}

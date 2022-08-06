@@ -25,7 +25,9 @@ axiosClient.interceptors.response.use(
     return Promise.reject(error.response?.data.content);
   }
 );
+
 // setUp request interceptor
+/*
 axiosClient.interceptors.request.use((config) => {
   // Config là thông tin của rquest sẽ được gửi lên server
   // Kiểm tra xem user dẫ đăng nhậph hay chưa đẻ lấy acccessToken gắn vào headers
@@ -37,5 +39,6 @@ axiosClient.interceptors.request.use((config) => {
   }
   return config;
 });
+*/
 
 export default axiosClient;
