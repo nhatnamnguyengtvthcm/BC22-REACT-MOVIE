@@ -8,6 +8,9 @@ const movieAPI = {
     },
     getMovieBanner: ()=>{
         return axiosClient.get<unknown,Banner[]>("QuanLyPhim/LayDanhSachBanner")
+    },
+    getMovieDetail: (maPhim:number)=>{
+        return axiosClient.get<unknown,Banner[]>(`QuanLyRap/LayThongTinLichChieuPhim?maPhim=${maPhim}`)
     }
 }
 export default movieAPI;

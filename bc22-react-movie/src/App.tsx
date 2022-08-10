@@ -22,7 +22,7 @@ function App() {
           <Route path="/news" element={<News />} />
           <Route path="/register" element={<Regisgter />} />
           <Route path="/login" element={<Login />} />
-          <Route path= "/test" element={<Detail />} />
+          {/* <Route path= "/test" element={<Detail />} /> */}
           
           <Route index element={<Login />} />
          

@@ -36,5 +36,31 @@ export interface listChieu {
     maRap: string;
     tenRap: string;
     ngayChieuGioChieu: string,
-    giaVe: string
+    giaVe: string,
+    thoiLuong: number
+}
+
+export interface chiTietPhim{
+  biDanh: string;
+  logo: string;
+  // lstCumRap: cumRap[];
+  trailer: string;
+  hinhAnh: string;
+  moTa: string;
+  maNhom:string;
+  hot: Boolean;
+  dangChieu: boolean;
+  sapChieu: boolean;
+  ngayKhoiChieu: string;
+  danhGia: number;
+  heThongRapChieu:  heThongRapChieu[]
+}
+
+export interface heThongRapChieu{
+    cumRapChieu:cumRapChieu[];
+}
+
+export interface cumRapChieu{
+  lichChieuPhim: listChieu[],
+  cumRap: cumRap
 }

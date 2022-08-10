@@ -9,7 +9,8 @@ interface FilmFlipProps {
 const FilmFlip = (props: FilmFlipProps) => {
   const { movie } = props;
   const navigate = useNavigate();
-  const gotoDetails = (maPhim:number) => {
+  const gotoDetails = (maPhim: number) => {
+    console.log("nam");
     navigate(`/detail/${maPhim}`);
   };
   return (
@@ -39,16 +40,25 @@ const FilmFlip = (props: FilmFlipProps) => {
           </div>
           <div style={{ position: "absolute", top: "-200px", left: "100px" }}>
             <a href={movie.trailer}>
-            <img
-              src={require("assets/img/play-btn.png")}
-              alt="SVG as an image"
-              style={{ width: 100, height: 100 }}
-              className="rounded-full cursor-pointer align-middle"
-            ></img>
-              </a> 
+              <img
+                src={require("assets/img/play-btn.png")}
+                alt="SVG as an image"
+                style={{ width: 100, height: 100 }}
+                className="rounded-full cursor-pointer align-middle"
+              ></img>
+            </a>
           </div>
-          <div style={{ position: "absolute", top: "-100px", left: "0px", width:"100%"}}>
-            <h2 className=" font-bold text-center text-white ">{movie.tenPhim}</h2>
+          <div
+            style={{
+              position: "absolute",
+              top: "-100px",
+              left: "0px",
+              width: "100%",
+            }}
+          >
+            <h2 className=" font-bold text-center text-white ">
+              {movie.tenPhim}
+            </h2>
           </div>
           {/* <div
             className="w-full h-full"
@@ -67,18 +77,28 @@ const FilmFlip = (props: FilmFlipProps) => {
           <h1>John Doe</h1>
           <p>Architect &amp; Engineer</p>
           <p>We love that guy</p> */}
-        
         </div>
-        
       </div>
-      <div onClick={()=>gotoDetails(movie.maPhim)} className=" bottom-0 w-full bg-red-500  z-[200]">
-            <NavLink to={`detail/${movie.maPhim}`}
-              type="button"
-              className="w-full center px-16 py-3 font-semibold rounded text-white border-black"
-            >
-              Đặt vé
-            </NavLink>
-          </div>
+      <div
+        className=" bottom-0 w-full bg-red-500  z-[200]"
+      >
+        <NavLink
+          to={`detail/${movie.maPhim}`}
+          type="button"
+          className="w-full center px-16 py-3 font-semibold rounded text-white border-black text-center"
+          onClick={() => gotoDetails(movie.maPhim)}
+        >
+          Đặt vé
+        </NavLink>
+      </div>
+      {/* <NavLink
+          to={`detail/${movie.maPhim}`}
+          type="button"
+          className="w-full center px-16 py-3 font-semibold rounded text-white border-black text-center bottom-0  bg-red-500  z-[200]"
+          onClick={() => gotoDetails(movie.maPhim)}
+        >
+          <div>Đặt vé</div>
+      </NavLink> */}
     </div>
   );
 };

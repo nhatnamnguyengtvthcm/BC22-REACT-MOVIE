@@ -11,7 +11,7 @@ interface Props {
 }
 
 interface slickProps{
-    listFilm: Movie[],
+    movies: Movie[],
 }
 const Slick = (props:slickProps) => {
   const SampleNextArrow = (props: Props) => {
@@ -93,7 +93,7 @@ const Slick = (props:slickProps) => {
         {/* <div>
           <h3>1</h3>
         </div> */}
-        {props.listFilm.map((item)=>{
+        {props.movies.map((item)=>{
           return <FilmFlip movie={item}></FilmFlip>
           
         })}

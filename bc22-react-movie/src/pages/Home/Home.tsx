@@ -14,7 +14,7 @@ import { showingMovie, comingMovie } from "slices/movies";
 import styleSlick from "components/Slick/slick.module.css";
 
 const Home: React.FC = () => {
-  const { data, movies, isComingMovie, isShowingMovie } = useSelector(
+  const { movies, isComingMovie, isShowingMovie } = useSelector(
     (state: RootState) => state.movies
   );
   const dispatch = useDispatch<AppDispatch>();
@@ -28,10 +28,10 @@ const Home: React.FC = () => {
     return movieCartList;
   };
   const handleShowingMovie = (event: React.MouseEvent<HTMLButtonElement>) => {
-    dispatch(showingMovie(data));
+    dispatch(showingMovie(movies));
   };
   const handleComingMovie = (event: React.MouseEvent<HTMLButtonElement>) => {
-    dispatch(comingMovie(data));
+    dispatch(comingMovie(movies));
   };
   const activeClassShowingMovie =
     isShowingMovie === true ? "activeMovie" : "deactiveMovie";
@@ -59,7 +59,7 @@ const Home: React.FC = () => {
         </div>
 
         <div className="container ">
-          <Slick listFilm={movies}></Slick>
+          <Slick movies={movies}></Slick>
         </div>
 
         {/* <div className="grid md:grid-cols-4 xs:grid-cols-1  gap-20 container">

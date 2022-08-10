@@ -4,7 +4,7 @@ import type { DotPosition } from "antd/es/carousel";
 import React, { Dispatch, ReactElement, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BannerState, getBannerList } from "slices/banner";
-import { Banner } from "interfaces/movie";
+// import { Banner } from "interfaces/movie";
 import { AppDispatch, RootState } from "store";
 import className from "classnames";
 // import styles from "./carousel.module.scss";

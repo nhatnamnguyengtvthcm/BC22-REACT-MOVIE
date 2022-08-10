@@ -11,7 +11,7 @@ interface State{
     error: string;
     movies: Movie[],
     isShowingMovie: boolean,
-    isComingMovie: boolean
+    isComingMovie: boolean,
 }
 const initialState: State = {
     data: [],
@@ -48,6 +48,7 @@ export const getMovieList = createAsyncThunk(
     }
 
 );
+
 
 // createSlice tạo 1 producer kết hợp action 
 const moviesSlice = createSlice({

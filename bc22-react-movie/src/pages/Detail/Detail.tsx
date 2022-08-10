@@ -1,97 +1,100 @@
-import React from "react";
-import { CustomCard } from "@tsamantanis/react-glassmorphism";
+import React, { useEffect, useState } from "react";
+import { CustomCard, Button, Card } from "@tsamantanis/react-glassmorphism";
 import "@tsamantanis/react-glassmorphism/dist/index.css";
-import { GlassCard } from "components/GlassCard/GlassCard";
 import { height } from "@mui/system";
 import { Box } from "@mui/material";
-
-const Detail = () => {
-  return (
-    // <CustomCard
-    //     effectColor="#C780FF" // required
-    //     color="#14AEFF" // default color is white
-    //     blur={10} // default blur value is 10px
-    //     borderRadius={0} // default border radius value is 10px
-    // >
-    //     <h1>Hello</h1>
-    //     <p>This is an example</p>
-    // </CustomCard>
-    // <div style={{backgroundColor:"red"}}>
-    //      <CustomCard effectColor={"#C780FF"} color="#14AEFF" borderRadius={0}></CustomCard>
-    // </div>
-    // <div style={{backgroundColor:"red",width:"100%", height:"100%"}} className="p-5">
-
-    // </div>
-    <div>
-      <GlassCard noBorders color="#14AEFF">
-        <h1>Hello</h1>
-        <div>
-          <input type="text" />
-          Text
-        </div>
-      </GlassCard>
-      <div>
-        <input type="text" />
-        Teest1
-      </div>
-      <div className="w-full max-w-xs">
-        <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
-          <GlassCard color="#123456">
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="username"
-              >
-                Username
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="username"
-                type="text"
-                placeholder="Username"
-              />
-            </div>
-            <div className="mb-6">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <input
-                className="shadow appearance-none border border-red-500 rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
-                id="password"
-                type="password"
-                placeholder="******************"
-              />
-              <p className="text-red-500 text-xs italic">
-                Please choose a password.
-              </p>
-            </div>
-            <div className="flex items-center justify-between">
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                type="button"
-              >
-                Sign In
-              </button>
-              <a
-                className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
-                href="#"
-              >
-                Forgot Password?
-              </a>
-            </div>
-          </GlassCard>
-        </form>
-        <p className="text-center text-gray-500 text-xs">
-          ©2020 Acme Corp. All rights reserved.
-        </p>
-      </div>
-    </div>
-
-    //  <h1>Hello</h1>
-  );
+import { Movie } from "interfaces/movie";
+import "assets/styles/circle.css";
+import { Radio, Space, Tabs } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import {AppDispatch, RootState} from "store";
+import { getShowTimeMovie } from "slices/cinema";
+import { useParams } from "react-router-dom";
+const { TabPane } = Tabs;
+interface props {
+  maPhim: number;
+}
+type MovieParams = {
+  maPhim: string;
 };
 
+const Detail = () => {
+  const {maPhim}  = useParams<MovieParams>();
+  // console.log("maPhim: ",maPhim);
+  let maPhimNum = 0;
+  if (typeof maPhim === 'string'){
+    maPhimNum = parseInt(maPhim);
+  }
+  // console.log("maPhimNum: ", maPhimNum);
+  
+  // const {movie} = props;
+  const dispatch = useDispatch<AppDispatch>();
+  useEffect(()=>{
+    console.log("here");
+    dispatch(getShowTimeMovie(maPhimNum));
+  },[])
+  const {chiTietPhim} =  useSelector((state:RootState)=>(state.cinema))
+  return (
+    // <CustomCard
+    //   effectColor="#C780FF" // required
+    //   color="#14AEFF" // default color is white
+    //   blur={10} // default blur value is 10px
+    //   borderRadius={0} // default border radius value is 10px
+    // >
+    //   <h1>Hello</h1>
+    //   <p>This is an example</p>
+    // </CustomCard>
+    <div
+      style={{
+        backgroundImage: `url(https://picsum.photos/1000)`,
+        minHeight: "100vh",
+      }}
+    >
+      <CustomCard
+        effectColor="#fff" // required
+        color="#fff" // default color is white
+        blur={20} // default blur value is 10px
+        borderRadius={0} // default border radius value is 10px
+        style={{ minHeight: "100vh" }}
+      >
+        <div className="grid grid-cols-12 p-40">
+          <div className="col-span-6 col-start-3">
+            <div className="grid grid-cols-6 gap-5">
+              <div className="col-span-3 col-start-1">
+                <img src="https://picsum.photos/800/800"></img>
+              </div>
+
+              <div className="noidung col-span-2 col-start-4">
+                <p>Tên phim</p>
+                <p>Mô tả</p>
+              </div>
+            </div>
+          </div>
+          <div className="grid grid-cols-3 ">
+            <div className="c100 p25">
+              <span>25%</span>
+              <div className="slice">
+                <div className="bar" />
+                <div className="fill" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="mt-5 ml-20">
+          <Tabs tabPosition="left" >
+            <TabPane tab="Tab 1" key="1">
+              Content of Tab 1
+            </TabPane>
+            <TabPane tab="Tab 2" key="2">
+              Content of Tab 2
+            </TabPane>
+            <TabPane tab="Tab 3" key="3">
+              Content of Tab 3
+            </TabPane>
+          </Tabs>
+        </div>
+      </CustomCard>
+    </div>
+  );
+};
 export default Detail;
