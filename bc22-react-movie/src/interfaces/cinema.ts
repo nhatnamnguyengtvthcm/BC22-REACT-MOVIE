@@ -43,6 +43,7 @@ export interface listChieu {
 export interface chiTietPhim{
   biDanh: string;
   logo: string;
+  tenPhim:string;
   // lstCumRap: cumRap[];
   trailer: string;
   hinhAnh: string;

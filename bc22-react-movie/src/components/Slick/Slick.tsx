@@ -93,8 +93,8 @@ const Slick = (props:slickProps) => {
         {/* <div>
           <h3>1</h3>
         </div> */}
-        {props.movies.map((item)=>{
-          return <FilmFlip movie={item}></FilmFlip>
+        {props.movies.map((item, index)=>{
+          return <FilmFlip movie={item} key={index}></FilmFlip>
           
         })}
       </Slider>

@@ -4,7 +4,7 @@ import './index.css';
 import store from 'store';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Outlet } from 'react-router-dom';
 // ant design
 import 'antd/dist/antd.css';
 // react slick

@@ -1,6 +1,7 @@
 import { Movie } from "interfaces/movie";
-import React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import React, { useCallback } from "react";
+import { NavLink, useNavigate,Link, Outlet} from "react-router-dom";
+
 import "./FilmFlip.css";
 
 interface FilmFlipProps {
@@ -9,10 +10,12 @@ interface FilmFlipProps {
 const FilmFlip = (props: FilmFlipProps) => {
   const { movie } = props;
   const navigate = useNavigate();
+  // const history = useHistory();
   const gotoDetails = (maPhim: number) => {
     console.log("nam");
-    navigate(`/detail/${maPhim}`);
+    navigate(`detail/${maPhim}`);
   };
+  // const gotoDetails = useCallback((maPhim: number) => navigate(`/detail/${maPhim}`), [navigate]);
   return (
     <div className="flip-card my-5">
       <div className="flip-card-inner">
@@ -80,27 +83,29 @@ const FilmFlip = (props: FilmFlipProps) => {
         </div>
       </div>
       <div
-        className=" bottom-0 w-full bg-red-500  z-[200]"
+        className=" bottom-0 w-full bg-red-500"
       >
-        <NavLink
+        <Link
           to={`detail/${movie.maPhim}`}
           type="button"
           className="w-full center px-16 py-3 font-semibold rounded text-white border-black text-center"
-          onClick={() => gotoDetails(movie.maPhim)}
+          onClick={()=>gotoDetails(movie.maPhim)}
         >
           Đặt vé
-        </NavLink>
+          {/* <button onClick={()=>gotoDetails(movie.maPhim)}> Đặt vé</button>
+          */}
+        </Link>
+        
+        {/* <button type="button"  onClick={()=>gotoDetails(movie.maPhim)}> Đặt vé</button> */}
+       
       </div>
-      {/* <NavLink
-          to={`detail/${movie.maPhim}`}
-          type="button"
-          className="w-full center px-16 py-3 font-semibold rounded text-white border-black text-center bottom-0  bg-red-500  z-[200]"
-          onClick={() => gotoDetails(movie.maPhim)}
-        >
-          <div>Đặt vé</div>
-      </NavLink> */}
+      
     </div>
   );
 };
 
 export default FilmFlip;
+function maPhim(arg0: string, maPhim: any, number: any): void {
+  throw new Error("Function not implemented.");
+}
+

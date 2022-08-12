@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {AppDispatch, RootState} from "store";
 import { getShowTimeMovie } from "slices/cinema";
 import { useParams } from "react-router-dom";
+import moment from "moment";
 const { TabPane } = Tabs;
 interface props {
   maPhim: number;
@@ -46,7 +47,10 @@ const Detail = () => {
     // </CustomCard>
     <div
       style={{
-        backgroundImage: `url(https://picsum.photos/1000)`,
+        backgroundImage: `url(${chiTietPhim.hinhAnh})`,
+        backgroundPosition:"center",
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
         minHeight: "100vh",
       }}
     >
@@ -61,11 +65,12 @@ const Detail = () => {
           <div className="col-span-6 col-start-3">
             <div className="grid grid-cols-6 gap-5">
               <div className="col-span-3 col-start-1">
-                <img src="https://picsum.photos/800/800"></img>
+                <img src={chiTietPhim.hinhAnh} style={{width:"250px", height:"300px"}}></img>
               </div>
 
-              <div className="noidung col-span-2 col-start-4">
-                <p>Tên phim</p>
+              <div className="noidung col-span-2 col-start-4 flex-column" style={{marginTop:"30%"}}>
+                <p className="text-sm">Ngày chiếu: {moment(chiTietPhim.ngayKhoiChieu).format("DD.MM YYYY")}</p>
+                <p className="text-2xl text-white">{chiTietPhim.tenPhim}</p>
                 <p>Mô tả</p>
               </div>
             </div>
