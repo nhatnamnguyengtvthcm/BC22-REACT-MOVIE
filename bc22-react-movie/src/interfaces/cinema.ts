@@ -59,6 +59,9 @@ export interface chiTietPhim{
 
 export interface heThongRapChieu{
     cumRapChieu:cumRapChieu[];
+    logo: string;
+    maHeThongRap: string;
+    tenHeThongRap: string
 }
 
 export interface cumRapChieu{
