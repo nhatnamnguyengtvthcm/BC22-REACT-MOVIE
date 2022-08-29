@@ -9,7 +9,7 @@ import { Radio, Space, Tabs, Rate } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "store";
 import { getShowTimeMovie } from "slices/cinema";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import moment from "moment";
 
 const { TabPane } = Tabs;
@@ -102,24 +102,73 @@ const Detail = () => {
             </div>
           </div>
         </div>
-        <div className="mt-5 ml-20">
-          <Tabs tabPosition="left">
-          
-            {chiTietPhim.heThongRapChieu &&  chiTietPhim.heThongRapChieu.map((htr, index) => {
-              return (
-                <TabPane
-                  tab={
-                    <div>
-                      <img src={htr.logo} className="w-10 h-10"></img>
-                      <h2>{htr.tenHeThongRap}</h2>
-                    </div>
-                  }
-                  key="1"
-                >
-                  Content of Tab 1
-                </TabPane>
-              );
-            })}
+        <div className="mt-5 ml-20 container bg-white">
+          <Tabs defaultActiveKey="1" centered>
+            <TabPane tab="Lịch chiếu" key="1" style={{ minHeight: 300 }}>
+              <div>
+                <Tabs tabPosition={"left"}>
+                  {chiTietPhim.heThongRapChieu
+                    ?.slice(0, 4)
+                    .map((htr, index) => {
+                      return (
+                        <TabPane
+                          tab={
+                            <div className="flex flex-row items-center justify-center ">
+                              <div>
+                                <img
+                                  src={htr.logo}
+                                  style={{ width: "50px" }}
+                                ></img>
+                                <h2 className=" ml-2 mt-2">
+                                  {htr.tenHeThongRap}
+                                </h2>
+                              </div>
+                            </div>
+                          }
+                          key={index}
+                        >
+                          {/* load thông tin loạt tương ứng */}
+                          {htr.cumRapChieu?.slice(0, 4).map((cumRap, index) => {
+                            return (
+                              <div key={index} className="mt-5">
+                                <div className="flex flex-column">
+                                  <img
+                                    src={htr.logo}
+                                    style={{ width: "80px" }}
+                                    alt=""
+                                  />
+                                  <div className="ml-2 mt-2">
+                                    <p
+                                      style={{
+                                        fontSize: "20px",
+                                        fontWeight: "bold",
+                                        lineHeight: 0.5,
+                                      }}
+                                    >
+                                      {cumRap.tenCumRap}
+                                    </p>
+                                    <p className="text-gray-400">{cumRap.tenCumRap}</p>
+                                  </div>
+                                </div>
+                                <div className="thong-tin-lich-chieu grid grid-cols-4">
+                                  {/* <div className="col-span-1">Nam</div>
+                                  <div className="col-span-1">Nam</div>
+                                  <div className="col-span-1">Nam</div>
+                                  <div className="col-span-1">Nam</div> */}
+                                  {cumRap.lichChieuPhim?.slice(0,10).map((lichChieu, index)=>{
+                                    return  <NavLink to ="/" className="col-span-1 text-green-400 text-xl" key={index}>{moment(lichChieu.ngayChieuGioChieu).format("hh:mm A")}</NavLink>
+                                  })}
+                                  
+                                </div>
+                              </div>
+                            );
+                          })}
+                        </TabPane>
+                      );
+                    })}
+                </Tabs>
+              </div>
+            </TabPane>
           </Tabs>
         </div>
       </CustomCard>

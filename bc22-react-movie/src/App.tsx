@@ -10,6 +10,7 @@ import Contact from "pages/Contact";
 import Regisgter from "pages/Register/Regisgter";
 import Login from "pages/Login";
 import Detail from "pages/Detail";
+import CheckoutTemplate from "templates/CheckoutTemplate/CheckoutTemplate";
 
 
 function App() {
@@ -27,10 +28,11 @@ function App() {
           {/* <Route path= "/test" element={<Detail />} /> */}
 
           <Route path= "detail/:maPhim" element={<Detail />} />
+          
           <Route path="*" element={<h1>Not Found</h1>}/>
-        
+         
         </Route>
-       
+        <Route path="/checkout/:id" element={<CheckoutTemplate />}></Route>
       </Routes>
     </>
 

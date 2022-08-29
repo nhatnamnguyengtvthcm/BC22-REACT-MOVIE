@@ -66,5 +66,10 @@ export interface heThongRapChieu{
 
 export interface cumRapChieu{
   lichChieuPhim: listChieu[],
-  cumRap: cumRap
+  danhSachPhim: film[],
+  maCumRap: string;
+  tenCumRap: string;
+  diaChi: string;
+  hinhAnh: string;
+  // cumRap: cumRap
 }
